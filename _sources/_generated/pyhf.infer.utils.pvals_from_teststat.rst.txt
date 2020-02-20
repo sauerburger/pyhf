@@ -1,0 +1,6 @@
+pyhf.infer.utils.pvals\_from\_teststat
+======================================
+
+.. currentmodule:: pyhf.infer.utils
+
+.. autofunction:: pvals_from_teststat

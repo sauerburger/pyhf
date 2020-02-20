@@ -1,0 +1,6 @@
+pyhf.infer.utils.pvals\_from\_teststat\_expected
+================================================
+
+.. currentmodule:: pyhf.infer.utils
+
+.. autofunction:: pvals_from_teststat_expected

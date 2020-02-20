@@ -1,0 +1,6 @@
+pyhf.utils.validate
+===================
+
+.. currentmodule:: pyhf.utils
+
+.. autofunction:: validate

@@ -1,0 +1,26 @@
+:github_url: https://github.com/scikit-hep/pyhf/blob/master/pyhf/optimize/opt_pytorch
+
+pytorch\_optimizer
+==================
+
+.. currentmodule:: pyhf.optimize.opt_pytorch
+
+.. autoclass:: pytorch_optimizer
+   :show-inheritance:
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   .. automethod:: pytorch_optimizer.setup_minimize
+   
+   
+   

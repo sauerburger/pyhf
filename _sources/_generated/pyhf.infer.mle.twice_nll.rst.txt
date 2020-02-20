@@ -1,0 +1,6 @@
+pyhf.infer.mle.twice\_nll
+=========================
+
+.. currentmodule:: pyhf.infer.mle
+
+.. autofunction:: twice_nll

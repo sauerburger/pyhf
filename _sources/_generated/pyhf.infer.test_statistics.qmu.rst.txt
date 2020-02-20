@@ -1,0 +1,6 @@
+pyhf.infer.test\_statistics.qmu
+===============================
+
+.. currentmodule:: pyhf.infer.test_statistics
+
+.. autofunction:: qmu

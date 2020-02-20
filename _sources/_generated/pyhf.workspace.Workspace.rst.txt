@@ -1,0 +1,58 @@
+:github_url: https://github.com/scikit-hep/pyhf/blob/master/pyhf/workspace
+
+Workspace
+=========
+
+.. currentmodule:: pyhf.workspace
+
+.. autoclass:: Workspace
+   :show-inheritance:
+
+   
+   
+   .. rubric:: Attributes
+
+   
+   .. autoattribute:: Workspace.valid_joins
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   
+   
+   .. automethod:: Workspace.__init__
+   
+   
+   
+   .. automethod:: Workspace.combine
+   
+   
+   
+   .. automethod:: Workspace.data
+   
+   
+   
+   
+   .. automethod:: Workspace.get_measurement
+   
+   
+   
+   
+   .. automethod:: Workspace.model
+   
+   
+   
+   
+   .. automethod:: Workspace.prune
+   
+   
+   .. automethod:: Workspace.rename
+   
+   
+   
+   
+   
+   

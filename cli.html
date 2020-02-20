@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Command Line API &mdash; pyhf 0.4.1.dev13 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "TeX": {"Macros": {"bm": ["\\boldsymbol{#1}", 1], "HiFa": "\\texttt{HistFactory}", "Root": "\\texttt{ROOT}", "RooStats": "\\texttt{RooStats}", "RooFit": "\\texttt{RooFit}", "pyhf": "\\texttt{pyhf}", "CLs": "\\mathrm{CL}_{s}", "freeset": "\\bm{\\eta}", "constrset": "\\bm{\\chi}", "singleconstr": "\\chi", "channelcounts": "\\bm{n}", "auxdata": "\\bm{a}", "poiset": "\\bm{\\psi}", "nuisset": "\\bm{\\theta}", "fullset": "\\bm{\\phi}", "singlefull": "\\phi", "TeV": "\\textrm{TeV}"}}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python API" href="api.html" />
+    <link rel="prev" title="Translations" href="babel.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyhf
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="likelihood.html">Likelihood Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learn.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="talks.html">Talks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Developing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="babel.html">Translations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command Line API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pyhf">pyhf</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyhf-cls">cls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyhf-combine">combine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyhf-inspect">inspect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyhf-json2xml">json2xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyhf-prune">prune</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyhf-rename">rename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyhf-xml2json">xml2json</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html">Use and Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance/ROADMAP.html">Roadmap (2019-2020)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyhf</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Command Line API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/cli.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="command-line-api">
+<h1>Command Line API<a class="headerlink" href="#command-line-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pyhf">
+<h2>pyhf<a class="headerlink" href="#pyhf" title="Permalink to this headline">¶</a></h2>
+<p>Top-level CLI entrypoint.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyhf <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<div class="section" id="pyhf-cls">
+<h3>cls<a class="headerlink" href="#pyhf-cls" title="Permalink to this headline">¶</a></h3>
+<p>Compute CLs value(s) for a given pyhf workspace.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyhf cls <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>WORKSPACE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-output-file">
+<code class="sig-name descname">--output-file</code><code class="sig-prename descclassname"> &lt;output_file&gt;</code><a class="headerlink" href="#cmdoption-pyhf-cls-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the output json file. If not specified, prints to screen.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-measurement">
+<code class="sig-name descname">--measurement</code><code class="sig-prename descclassname"> &lt;measurement&gt;</code><a class="headerlink" href="#cmdoption-pyhf-cls-measurement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--patch</code><code class="sig-prename descclassname"> &lt;patch&gt;</code><a class="headerlink" href="#cmdoption-pyhf-cls-p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-testpoi">
+<code class="sig-name descname">--testpoi</code><code class="sig-prename descclassname"> &lt;testpoi&gt;</code><a class="headerlink" href="#cmdoption-pyhf-cls-testpoi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-teststat">
+<code class="sig-name descname">--teststat</code><code class="sig-prename descclassname"> &lt;teststat&gt;</code><a class="headerlink" href="#cmdoption-pyhf-cls-teststat" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>q|qtilde</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-backend">
+<code class="sig-name descname">--backend</code><code class="sig-prename descclassname"> &lt;backend&gt;</code><a class="headerlink" href="#cmdoption-pyhf-cls-backend" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tensor backend used for the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>numpy|pytorch|tensorflow|jax|np|torch|tf</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-optimizer">
+<code class="sig-name descname">--optimizer</code><code class="sig-prename descclassname"> &lt;optimizer&gt;</code><a class="headerlink" href="#cmdoption-pyhf-cls-optimizer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-optconf">
+<code class="sig-name descname">--optconf</code><code class="sig-prename descclassname"> &lt;optconf&gt;</code><a class="headerlink" href="#cmdoption-pyhf-cls-optconf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-cls-arg-workspace">
+<code class="sig-name descname">WORKSPACE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-cls-arg-workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyhf-combine">
+<h3>combine<a class="headerlink" href="#pyhf-combine" title="Permalink to this headline">¶</a></h3>
+<p>Combine two workspaces into a single workspace.</p>
+<p>See <a class="reference internal" href="_generated/pyhf.workspace.Workspace.html#pyhf.workspace.Workspace.combine" title="pyhf.workspace.Workspace.combine"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyhf.workspace.Workspace.combine()</span></code></a> for more information.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyhf combine <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>WORKSPACE_ONE<span class="o">]</span> <span class="o">[</span>WORKSPACE_TWO<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-combine-j">
+<code class="sig-name descname">-j</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--join</code><code class="sig-prename descclassname"> &lt;join&gt;</code><a class="headerlink" href="#cmdoption-pyhf-combine-j" title="Permalink to this definition">¶</a></dt>
+<dd><p>The join operation to apply when combining the two workspaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>none|outer|left outer|right outer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-combine-output-file">
+<code class="sig-name descname">--output-file</code><code class="sig-prename descclassname"> &lt;output_file&gt;</code><a class="headerlink" href="#cmdoption-pyhf-combine-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the output json file. If not specified, prints to screen.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-combine-arg-workspace-one">
+<code class="sig-name descname">WORKSPACE_ONE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-combine-arg-workspace-one" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-combine-arg-workspace-two">
+<code class="sig-name descname">WORKSPACE_TWO</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-combine-arg-workspace-two" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyhf-inspect">
+<h3>inspect<a class="headerlink" href="#pyhf-inspect" title="Permalink to this headline">¶</a></h3>
+<p>Inspect a pyhf JSON document.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyhf inspect <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>WORKSPACE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-inspect-output-file">
+<code class="sig-name descname">--output-file</code><code class="sig-prename descclassname"> &lt;output_file&gt;</code><a class="headerlink" href="#cmdoption-pyhf-inspect-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the output json file. If not specified, prints to screen.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-inspect-measurement">
+<code class="sig-name descname">--measurement</code><code class="sig-prename descclassname"> &lt;measurement&gt;</code><a class="headerlink" href="#cmdoption-pyhf-inspect-measurement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-inspect-arg-workspace">
+<code class="sig-name descname">WORKSPACE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-inspect-arg-workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyhf-json2xml">
+<h3>json2xml<a class="headerlink" href="#pyhf-json2xml" title="Permalink to this headline">¶</a></h3>
+<p>Convert pyhf JSON back to XML + ROOT files.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyhf json2xml <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>WORKSPACE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-json2xml-output-dir">
+<code class="sig-name descname">--output-dir</code><code class="sig-prename descclassname"> &lt;output_dir&gt;</code><a class="headerlink" href="#cmdoption-pyhf-json2xml-output-dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-json2xml-specroot">
+<code class="sig-name descname">--specroot</code><code class="sig-prename descclassname"> &lt;specroot&gt;</code><a class="headerlink" href="#cmdoption-pyhf-json2xml-specroot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-json2xml-dataroot">
+<code class="sig-name descname">--dataroot</code><code class="sig-prename descclassname"> &lt;dataroot&gt;</code><a class="headerlink" href="#cmdoption-pyhf-json2xml-dataroot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-json2xml-resultprefix">
+<code class="sig-name descname">--resultprefix</code><code class="sig-prename descclassname"> &lt;resultprefix&gt;</code><a class="headerlink" href="#cmdoption-pyhf-json2xml-resultprefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-json2xml-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--patch</code><code class="sig-prename descclassname"> &lt;patch&gt;</code><a class="headerlink" href="#cmdoption-pyhf-json2xml-p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-json2xml-arg-workspace">
+<code class="sig-name descname">WORKSPACE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-json2xml-arg-workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyhf-prune">
+<h3>prune<a class="headerlink" href="#pyhf-prune" title="Permalink to this headline">¶</a></h3>
+<p>Prune components from the workspace.</p>
+<p>See <a class="reference internal" href="_generated/pyhf.workspace.Workspace.html#pyhf.workspace.Workspace.prune" title="pyhf.workspace.Workspace.prune"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyhf.workspace.Workspace.prune()</span></code></a> for more information.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyhf prune <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>WORKSPACE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-prune-output-file">
+<code class="sig-name descname">--output-file</code><code class="sig-prename descclassname"> &lt;output_file&gt;</code><a class="headerlink" href="#cmdoption-pyhf-prune-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the output json file. If not specified, prints to screen.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-prune-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--channel</code><code class="sig-prename descclassname"> &lt;channel&gt;</code><a class="headerlink" href="#cmdoption-pyhf-prune-c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-prune-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sample</code><code class="sig-prename descclassname"> &lt;sample&gt;</code><a class="headerlink" href="#cmdoption-pyhf-prune-s" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-prune-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--modifier</code><code class="sig-prename descclassname"> &lt;modifier&gt;</code><a class="headerlink" href="#cmdoption-pyhf-prune-m" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-prune-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--modifier-type</code><code class="sig-prename descclassname"> &lt;modifier_type&gt;</code><a class="headerlink" href="#cmdoption-pyhf-prune-t" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>histosys|lumi|normfactor|normsys|shapefactor|shapesys|staterror</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-prune-measurement">
+<code class="sig-name descname">--measurement</code><code class="sig-prename descclassname"> &lt;measurement&gt;</code><a class="headerlink" href="#cmdoption-pyhf-prune-measurement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-prune-arg-workspace">
+<code class="sig-name descname">WORKSPACE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-prune-arg-workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyhf-rename">
+<h3>rename<a class="headerlink" href="#pyhf-rename" title="Permalink to this headline">¶</a></h3>
+<p>Rename components of the workspace.</p>
+<p>See <a class="reference internal" href="_generated/pyhf.workspace.Workspace.html#pyhf.workspace.Workspace.rename" title="pyhf.workspace.Workspace.rename"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyhf.workspace.Workspace.rename()</span></code></a> for more information.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyhf rename <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>WORKSPACE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-rename-output-file">
+<code class="sig-name descname">--output-file</code><code class="sig-prename descclassname"> &lt;output_file&gt;</code><a class="headerlink" href="#cmdoption-pyhf-rename-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the output json file. If not specified, prints to screen.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-rename-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--channel</code><code class="sig-prename descclassname"> &lt;channel&gt;</code><a class="headerlink" href="#cmdoption-pyhf-rename-c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-rename-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sample</code><code class="sig-prename descclassname"> &lt;sample&gt;</code><a class="headerlink" href="#cmdoption-pyhf-rename-s" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-rename-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--modifier</code><code class="sig-prename descclassname"> &lt;modifier&gt;</code><a class="headerlink" href="#cmdoption-pyhf-rename-m" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-rename-measurement">
+<code class="sig-name descname">--measurement</code><code class="sig-prename descclassname"> &lt;measurement&gt;</code><a class="headerlink" href="#cmdoption-pyhf-rename-measurement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-rename-arg-workspace">
+<code class="sig-name descname">WORKSPACE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-rename-arg-workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyhf-xml2json">
+<h3>xml2json<a class="headerlink" href="#pyhf-xml2json" title="Permalink to this headline">¶</a></h3>
+<p>Entrypoint XML: The top-level XML file for the PDF definition.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyhf xml2json <span class="o">[</span>OPTIONS<span class="o">]</span> ENTRYPOINT_XML
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-xml2json-basedir">
+<code class="sig-name descname">--basedir</code><code class="sig-prename descclassname"> &lt;basedir&gt;</code><a class="headerlink" href="#cmdoption-pyhf-xml2json-basedir" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base directory for the XML files to point relative to.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-xml2json-output-file">
+<code class="sig-name descname">--output-file</code><code class="sig-prename descclassname"> &lt;output_file&gt;</code><a class="headerlink" href="#cmdoption-pyhf-xml2json-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the output json file. If not specified, prints to screen.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pyhf-xml2json-track-progress">
+<code class="sig-name descname">--track-progress</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--hide-progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-xml2json-track-progress" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pyhf-xml2json-arg-entrypoint-xml">
+<code class="sig-name descname">ENTRYPOINT_XML</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pyhf-xml2json-arg-entrypoint-xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="Python API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="babel.html" class="btn btn-neutral float-left" title="Translations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Lukas Heinrich, Matthew Feickert, Giordon Stark
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
