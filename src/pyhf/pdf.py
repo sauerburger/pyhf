@@ -192,7 +192,7 @@ def _nominal_and_modifiers_from_spec(config, spec):
                         if thismod
                         else [-1.0 if mtype == 'shapesys' else 0.0] * len(nom)
                     )
-                    maskval = [True if unc_val > 0.0 else False for uncrt in uncrts]
+                    maskval = [True if uncrt > 0.0 else False for uncrt in uncrts]
                     mega_mods[key][s]['data']['mask'] += maskval
                     mega_mods[key][s]['data']['uncrt'] += uncrts
                     mega_mods[key][s]['data']['nom_data'] += nom
